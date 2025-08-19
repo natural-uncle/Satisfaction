@@ -11,6 +11,7 @@
       color: #333;
       margin: 0;
       padding: 0;
+      transition: all 0.3s ease;
     }
     .container {
       max-width: 800px;
@@ -19,6 +20,7 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
     }
     .logo {
       text-align: center;
@@ -137,21 +139,47 @@
       width: 0%;
       transition: width 0.3s ease;
     }
-    @media (max-width: 600px) {
+
+    /* 🌙 深色模式樣式 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #eee;
+      }
       .container {
-        padding: 15px;
-        margin: 10px;
+        background: #1e1e1e;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
       }
-      label {
-        font-size: 1rem;
+      h2, label {
+        color: #9ad0b1;
       }
-      textarea {
-        font-size: 0.95rem;
-        padding: 8px;
+      p {
+        color: #ccc;
+      }
+      textarea, input[type=range] {
+        background: #2a2a2a;
+        color: #eee;
+        border: 1px solid #555;
       }
       button {
-        font-size: 1.1rem;
-        padding: 14px;
+        background: #4da67a;
+        color: #fff;
+      }
+      button:hover {
+        background: #3b7e5b;
+      }
+      .progress-container {
+        background: #333;
+      }
+      .progress-bar {
+        background: #4da67a;
+      }
+      .contact {
+        background: #2a2a2a;
+        color: #ccc;
+      }
+      .footer {
+        color: #aaa;
       }
     }
   </style>
@@ -243,23 +271,18 @@
 
       <button type="submit">送出表單</button>
       <div class="thankyou">
-        ✅ 感謝您填寫調查表！您的意見已成功送出。</div>
-	</form>
-    <!-- 聯絡資訊 -->
-    <div class="contact">
-	<center>
-      <h3>📱 聯絡我們｜快速找到自然大叔</h3>
-      <p>
-	</center>
-	<div style="text-align:center; margin-top:20px;">
-            <a href="https://lin.ee/OHk6Rn7" class="btn btn-line">🟢 LINE 官方帳號</a>
-            <a href="https://bit.ly/NaturalUncleTW" class="btn btn-call" button style="background-color: DodgerBlue;">🔵 Facebook 粉絲專頁</button></a>
-        </div>
-    </main>
-
- </div>
-  </div>
+        ✅ 感謝您填寫調查表！您的意見已成功送出。
+      </div>
     </form>
+
+    <!-- 聯絡資訊 -->
+    <div class="contact" style="text-align:center;">
+      <h3>📱 聯絡我們｜快速找到自然大叔</h3>
+      <div style="margin-top:20px;">
+        <a href="https://lin.ee/OHk6Rn7" class="btn btn-line">🟢 LINE 官方帳號</a>
+        <a href="https://bit.ly/NaturalUncleTW" class="btn btn-fb">🔵 Facebook 粉絲專頁</a>
+      </div>
+    </div>
 
     <div class="footer">© 2025 自然大叔｜專業家電清洗服務</div>
   </div>
