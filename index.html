@@ -55,14 +55,14 @@
       display: block;
       margin: 5px 0;
     }
-    textarea {
+    textarea, input[type=text] {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 0.95rem;
       resize: vertical;
-      min-height: 80px;
+      min-height: 50px;
       margin-top: 8px;
     }
     input[type=range] {
@@ -96,9 +96,6 @@
       font-size: 1.2rem;
       margin-top: 20px;
     }
-    .thankyou .links {
-      margin-top: 15px;
-    }
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -108,12 +105,8 @@
       color: white;
       font-weight: bold;
     }
-    .btn-line {
-      background-color: #06c755;
-    }
-    .btn-fb {
-      background-color: #1877F2;
-    }
+    .btn-line { background-color: #06c755; }
+    .btn-fb { background-color: #1877F2; }
     .footer {
       text-align: center;
       margin-top: 40px;
@@ -141,52 +134,73 @@
     }
 
     /* 🌙 深色模式樣式 */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #eee;
-      }
-      .container {
-        background: #1e1e1e;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      }
-      h2, label {
-        color: #9ad0b1;
-      }
-      p {
-        color: #ccc;
-      }
-      textarea, input[type=range] {
-        background: #2a2a2a;
-        color: #eee;
-        border: 1px solid #555;
-      }
-      button {
-        background: #4da67a;
-        color: #fff;
-      }
-      button:hover {
-        background: #3b7e5b;
-      }
-      .progress-container {
-        background: #333;
-      }
-      .progress-bar {
-        background: #4da67a;
-      }
-      .contact {
-        background: #2a2a2a;
-        color: #ccc;
-      }
-      .footer {
-        color: #aaa;
-      }
+    body.dark {
+      background-color: #121212;
+      color: #eee;
+    }
+    body.dark .container {
+      background: #1e1e1e;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    body.dark h2, body.dark label {
+      color: #9ad0b1;
+    }
+    body.dark p {
+      color: #ccc;
+    }
+    body.dark textarea, 
+    body.dark input[type=text], 
+    body.dark input[type=range] {
+      background: #2a2a2a;
+      color: #eee;
+      border: 1px solid #555;
+    }
+    body.dark button {
+      background: #4da67a;
+      color: #fff;
+    }
+    body.dark button:hover {
+      background: #3b7e5b;
+    }
+    body.dark .progress-container {
+      background: #333;
+    }
+    body.dark .progress-bar {
+      background: #4da67a;
+    }
+    body.dark .contact {
+      background: #2a2a2a;
+      color: #ccc;
+    }
+    body.dark .footer {
+      color: #aaa;
+    }
+
+    /* 主題切換按鈕 */
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #3a6d4f;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    body.dark .theme-toggle {
+      background: #4da67a;
     }
   </style>
 </head>
 <body>
+  <!-- 主題切換按鈕 -->
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+
   <div class="container">
-    <!-- LOGO 區塊 -->
+    <!-- LOGO -->
     <div class="logo">
       <img src="ChatGPT.png" alt="自然大叔清洗服務 顧客滿意度調查">
     </div>
@@ -199,12 +213,18 @@
       您的寶貴意見，將是我們進步的最大動力！
     </p>
 
-    <!-- 可視化進度條 -->
+    <!-- 進度條 -->
     <div class="progress-container">
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <form id="surveyForm" action="https://formspree.io/f/xanbgwjw" method="POST">
+    <form id="surveyForm" action="https://formspree.io/f/xxxxxx" method="POST">
+      <!-- 記名欄位 -->
+      <div class="form-group">
+        <label>👤 請留下您的姓名或 LINE ID</label>
+        <input type="text" name="customer_name" placeholder="輸入姓名或 LINE ID">
+      </div>
+
       <!-- 問題 1 -->
       <div class="form-group">
         <label>1. 您對這次的清洗服務整體體驗感覺如何？</label>
@@ -265,23 +285,18 @@
       <!-- 問題 6 -->
       <div class="form-group">
         <label>6. 您對我們的服務有任何想法、鼓勵或建議嗎？</label>
-        <div class="note">📝 「任何想法、批評或鼓勵的話，我們都非常歡迎您分享！」</div>
-        <textarea name="q6"></textarea>
+        <textarea name="q6" placeholder="📝 請自由填寫您的建議..."></textarea>
       </div>
 
       <button type="submit">送出表單</button>
-      <div class="thankyou">
-        ✅ 感謝您填寫調查表！您的意見已成功送出。
-      </div>
+      <div class="thankyou">✅ 感謝您填寫調查表！您的意見已成功送出。</div>
     </form>
 
     <!-- 聯絡資訊 -->
     <div class="contact" style="text-align:center;">
       <h3>📱 聯絡我們｜快速找到自然大叔</h3>
-      <div style="margin-top:20px;">
-        <a href="https://lin.ee/OHk6Rn7" class="btn btn-line">🟢 LINE 官方帳號</a>
-        <a href="https://bit.ly/NaturalUncleTW" class="btn btn-fb">🔵 Facebook 粉絲專頁</a>
-      </div>
+      <a href="https://lin.ee/OHk6Rn7" class="btn btn-line">🟢 LINE 官方帳號</a>
+      <a href="https://bit.ly/NaturalUncleTW" class="btn btn-fb">🔵 Facebook 粉絲專頁</a>
     </div>
 
     <div class="footer">© 2025 自然大叔｜專業家電清洗服務</div>
@@ -291,35 +306,27 @@
     const form = document.getElementById("surveyForm");
     const thankyou = document.querySelector(".thankyou");
     const progressBar = document.getElementById("progressBar");
-    const totalQuestions = 6;
 
-    // 更新進度條
+    // 進度條更新
     const updateProgress = () => {
       let answered = 0;
+      const totalQuestions = 7; // 含姓名
 
-      // 計算 radio 題
-      const radios = form.querySelectorAll('input[type=radio]');
-      const radioGroups = [...new Set([...radios].map(r => r.name))];
-      radioGroups.forEach(group => {
-        if (form.querySelector(`input[name="${group}"]:checked`)) answered++;
+      form.querySelectorAll("input, textarea").forEach(el => {
+        if ((el.type === "radio" && el.checked) || 
+            (el.type === "text" && el.value.trim() !== "") ||
+            (el.type === "range" && el.value) ||
+            (el.tagName === "TEXTAREA" && el.value.trim() !== "")) {
+          answered++;
+        }
       });
 
-      // 計算 range 題 (q4)
-      if (form.querySelector('input[name="q4"]').value) answered++;
-
-      // 計算 textarea (q2_extra, q6 至少有一個填寫才算)
-      if (form.querySelector('textarea[name="q6"]').value.trim() !== "" ||
-          form.querySelector('textarea[name="q2_extra"]').value.trim() !== "") {
-        answered++;
-      }
-
-      const percent = (answered / totalQuestions) * 100;
+      const percent = Math.min((answered / totalQuestions) * 100, 100);
       progressBar.style.width = percent + "%";
     };
-
-    form.addEventListener("change", updateProgress);
     form.addEventListener("input", updateProgress);
 
+    // 表單送出
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       fetch(form.action, {
@@ -336,6 +343,26 @@
         }
       });
     });
+
+    // 主題切換
+    const themeToggle = document.getElementById("themeToggle");
+    const setTheme = (theme) => {
+      document.body.classList.toggle("dark", theme === "dark");
+      themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+      localStorage.setItem("theme", theme);
+    };
+    themeToggle.addEventListener("click", () => {
+      const current = document.body.classList.contains("dark") ? "dark" : "light";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+    // 初始化：依 localStorage 或系統設定
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(prefersDark ? "dark" : "light");
+    }
   </script>
 </body>
 </html>
