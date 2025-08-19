@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自然大叔清洗服務｜顧客滿意度調查</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: #f5f7f6;
+      text-align: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .logo img {
+      width: 120px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #3a6d4f;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #3a6d4f;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #2d523c;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="ChatGPT.png" alt="自然大叔LOGO">
+  </div>
+  <h2>📋 顧客滿意度調查</h2>
+  <p id="notice">
+    ⚠️ 為確保表單能正常送出，<br>
+    請點擊下方按鈕，使用外部瀏覽器開啟。<br>
+    （如 Chrome、Safari）
+  </p>
+  <a id="openBtn" href="index.html" class="btn" target="_blank" rel="noopener noreferrer">
+    🚀 在瀏覽器中開啟表單
+  </a>
+  <div class="footer">
+    © 2025 自然大叔｜專業家電清洗服務
+  </div>
+
+  <script>
+    function isLineBrowser() {
+      const ua = navigator.userAgent.toLowerCase();
+      return ua.indexOf("line") > -1;
+    }
+
+    if (!isLineBrowser()) {
+      // 如果不是在 LINE，直接跳轉到正式表單
+      window.location.href = "index.html";
+    } else {
+      // 如果是在 LINE，顯示提示與按鈕
+      document.getElementById("notice").style.display = "block";
+      document.getElementById("openBtn").style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>
